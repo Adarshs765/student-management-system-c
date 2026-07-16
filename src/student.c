@@ -41,7 +41,39 @@ void addStudent()
 
 void viewStudents()
 {
-    printf("\nView Students feature coming in Part 4.\n");
+    struct Student s;
+
+    FILE *fp = fopen("data/students.txt", "r");
+
+    if (fp == NULL)
+    {
+        printf("\nNo student records found!\n");
+        return;
+    }
+
+    printf("\n===============================================\n");
+    printf("             Student Records\n");
+    printf("===============================================\n");
+
+    printf("%-10s %-20s %-10s %-20s\n",
+           "ID", "Name", "Age", "Course");
+
+    printf("---------------------------------------------------------------\n");
+
+    while (fscanf(fp, "%d,%49[^,],%d,%49[^\n]\n",
+                  &s.id,
+                  s.name,
+                  &s.age,
+                  s.course) == 4)
+    {
+        printf("%-10d %-20s %-10d %-20s\n",
+               s.id,
+               s.name,
+               s.age,
+               s.course);
+    }
+
+    fclose(fp);
 }
 
 void searchStudent()
