@@ -78,7 +78,47 @@ void viewStudents()
 
 void searchStudent()
 {
-    printf("\nSearch Student feature coming in Part 5.\n");
+    struct Student s;
+    int searchId;
+    int found = 0;
+
+    FILE *fp = fopen("data/students.txt", "r");
+
+    if (fp == NULL)
+    {
+        printf("\nNo student records found!\n");
+        return;
+    }
+
+    printf("\n========== Search Student ==========\n");
+    printf("Enter Student ID: ");
+    scanf("%d", &searchId);
+
+    while (fscanf(fp, "%d,%49[^,],%d,%49[^\n]\n",
+                  &s.id,
+                  s.name,
+                  &s.age,
+                  s.course) == 4)
+    {
+        if (s.id == searchId)
+        {
+            printf("\nStudent Found!\n");
+            printf("-----------------------------\n");
+            printf("ID     : %d\n", s.id);
+            printf("Name   : %s\n", s.name);
+            printf("Age    : %d\n", s.age);
+            printf("Course : %s\n", s.course);
+            found = 1;
+            break;
+        }
+    }
+
+    if (!found)
+    {
+        printf("\nStudent with ID %d not found!\n", searchId);
+    }
+
+    fclose(fp);
 }
 
 void updateStudent()
