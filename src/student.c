@@ -184,5 +184,51 @@ void updateStudent()
 
 void deleteStudent()
 {
-    printf("\nDelete Student feature coming in Part 7.\n");
+    struct Student s;
+    int deleteId;
+    int found = 0;
+
+    FILE *fp = fopen("data/students.txt", "r");
+    FILE *temp = fopen("data/temp.txt", "w");
+
+    if (fp == NULL || temp == NULL)
+    {
+        printf("\nError opening file!\n");
+        return;
+    }
+
+    printf("\n========== Delete Student ==========\n");
+    printf("Enter Student ID to Delete: ");
+    scanf("%d", &deleteId);
+
+    while (fscanf(fp, "%d,%49[^,],%d,%49[^\n]\n",
+                  &s.id,
+                  s.name,
+                  &s.age,
+                  s.course) == 4)
+    {
+        if (s.id == deleteId)
+        {
+            found = 1;
+            continue;   // Skip this record
+        }
+
+        fprintf(temp,
+                "%d,%s,%d,%s\n",
+                s.id,
+                s.name,
+                s.age,
+                s.course);
+    }
+
+    fclose(fp);
+    fclose(temp);
+
+    remove("data/students.txt");
+    rename("data/temp.txt", "data/students.txt");
+
+    if (found)
+        printf("\nStudent deleted successfully!\n");
+    else
+        printf("\nStudent ID not found!\n");
 }
