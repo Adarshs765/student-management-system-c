@@ -123,7 +123,63 @@ void searchStudent()
 
 void updateStudent()
 {
-    printf("\nUpdate Student feature coming in Part 6.\n");
+    struct Student s;
+    int updateId;
+    int found = 0;
+
+    FILE *fp = fopen("data/students.txt", "r");
+    FILE *temp = fopen("data/temp.txt", "w");
+
+    if (fp == NULL || temp == NULL)
+    {
+        printf("\nError opening file!\n");
+        return;
+    }
+
+    printf("\n========== Update Student ==========\n");
+    printf("Enter Student ID to Update: ");
+    scanf("%d", &updateId);
+
+    while (fscanf(fp, "%d,%49[^,],%d,%49[^\n]\n",
+                  &s.id,
+                  s.name,
+                  &s.age,
+                  s.course) == 4)
+    {
+        if (s.id == updateId)
+        {
+            found = 1;
+
+            printf("\nStudent Found!\n");
+
+            printf("Enter New Name: ");
+            scanf(" %[^\n]", s.name);
+
+            printf("Enter New Age: ");
+            scanf("%d", &s.age);
+
+            printf("Enter New Course: ");
+            scanf(" %[^\n]", s.course);
+        }
+
+        fprintf(temp,
+                "%d,%s,%d,%s\n",
+                s.id,
+                s.name,
+                s.age,
+                s.course);
+    }
+
+    fclose(fp);
+    fclose(temp);
+
+    remove("data/students.txt");
+    rename("data/temp.txt", "data/students.txt");
+
+    if (found)
+        printf("\nStudent updated successfully!\n");
+    else
+        printf("\nStudent ID not found!\n");
 }
 
 void deleteStudent()
