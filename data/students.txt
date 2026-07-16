@@ -1,0 +1,3 @@
+2025,Adarsh ,20,EEE
+2023,Aman,20,ESE
+2017,Akash,19,ESE
