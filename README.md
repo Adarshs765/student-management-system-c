@@ -86,6 +86,43 @@ This project helps beginners understand:
 - Git & GitHub Project Management
 
 ---
+# 📸 Project Screenshots
+
+## 🏠 Main Menu
+
+![Main Menu](assets/menu.png.png)
+
+---
+
+## ➕ Add Student
+
+![Add Student](assets/Add_student.png.png)
+
+---
+
+## 📋 View Students
+
+![View Students](assets/View_Student.png.png)
+
+---
+
+## 🔍 Search Student
+
+![Search Student](assets/Search_student.png.png)
+
+---
+
+## ✏️ Update Student
+
+![Update Student](assets/Student_Update.png.png)
+
+---
+
+## ❌ Delete Student
+
+![Delete Student](assets/Student_Delete.png.png)
+
+---
 
 ## 📌 Future Improvements
 
